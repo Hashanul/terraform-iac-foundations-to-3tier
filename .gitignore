@@ -29,8 +29,10 @@ tfplan
 # SSH private keys
 *.pem
 *.key
+*.pub
 id_rsa
 id_ed25519
+*key
 
 # macOS
 .DS_Store
