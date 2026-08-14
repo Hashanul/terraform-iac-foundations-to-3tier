@@ -10,11 +10,14 @@ resource "aws_key_pair" "my_key" {
 # VPC, Subnet & Security Group
 
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.0.0/16"
+    cidr_block = "10.0.0.0/16"
 
-  tags = {
-    Name = "my_vpc"
-  }
+    enable_dns_support   = true
+    enable_dns_hostnames = true
+
+    tags = {
+        Name = "my_vpc"
+    }
 }
 
 # Subnet
@@ -85,6 +88,14 @@ resource "aws_security_group" "my_security_group" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     description = "HTTP Open"
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "HTTPS Open"
   }
 
   ingress {
